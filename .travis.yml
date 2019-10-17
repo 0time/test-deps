@@ -1,0 +1,4 @@
+deploy:
+  api_key: 'todo'
+  email: 'travis@0ti.me'
+  provider: npm
