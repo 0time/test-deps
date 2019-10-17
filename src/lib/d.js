@@ -1,3 +1,5 @@
+const path = require('path');
+
 // A shortcut for mocha describe that just describes the file path
-module.exports = options => (filename, cb) =>
-  describe(path.relative(options.directories.test, filename), cb);
+module.exports = ({ directories: { test } }) => (filename, cb) =>
+  describe(path.relative(test, filename), cb);
