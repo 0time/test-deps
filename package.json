@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
+    "test": "yarn lint && yarn test:unit && yarn test:integration && yarn test:coveralls",
+    "test:coveralls": "NODE_ENV=unit nyc mocha && nyc report --reporter=text-lcov | coveralls",
     "test:integration": "NODE_ENV=integration nyc mocha",
     "test:unit": "NODE_ENV=unit nyc mocha"
   },
@@ -12,6 +14,7 @@
     "bluebird": "^3.7.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.7",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",

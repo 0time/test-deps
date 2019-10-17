@@ -1,4 +1,4 @@
-const badHandler = require('./lib/bad-handler');
+const badHandler = require('./lib/bad-handler')(global);
 
 process.on('uncaughtException', badHandler);
 process.on('unhandledRejection', badHandler);
@@ -19,12 +19,10 @@ chai.use(sinonChai);
 const env = _.get(process, 'env.NODE_ENV');
 
 const root = process.cwd();
-const src = `${root}/src`;
-const test = `${root}/test/${env}`;
 
 const info = {
   directories: {
-    root: process.cwd(),
+    root,
     src: `${root}/src`,
     test: `${root}/test/${env}`,
   },
@@ -32,7 +30,7 @@ const info = {
 };
 
 const d = require('./lib/d')(info);
-const tquire = require('./lib/tquire');
+const tquire = require('./lib/tquire')(info);
 
 module.exports = {
   _,
