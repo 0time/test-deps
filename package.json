@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
+    "test": "yarn test:integration && yarn test:unit",
     "test:integration": "NODE_ENV=integration nyc mocha",
     "test:unit": "NODE_ENV=unit nyc mocha"
   },
