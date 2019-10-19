@@ -1,12 +1,5 @@
 const path = require('path');
-
-// path.relative can return a path without a leading `.`, this works around that
-const specialRelativeRegex = /^\.\//;
-const specialRelative = (from, to) => {
-  const result = path.relative(from, to);
-
-  return specialRelativeRegex.test(result) ? result : `./${result}`;
-};
+const specialRelative = require('./special-relative');
 
 module.exports = ({ directories: { root, src, test } }) => filename =>
   require(specialRelative(
