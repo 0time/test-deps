@@ -8,6 +8,13 @@ jobs:
   include:
     - stage: test
       script: npm run test
+    - stage: expect_version_bump
+      if: type = pull_request
+      script:
+        diff \
+          <(git show origin/master:package.json | jq -r .version) \
+          <(cat package.json | jq -r .version) \
+          || exit 1
     - stage: deploy
       node_js: 12
       deploy:
