@@ -9,6 +9,7 @@ deploy:
   email: npm@0ti.me
   api_key:
     secure: Twjy+nj0IDvU0h1OJfDUJ254Y2L3HQRBccjcKoJtSlG6qf/P9sSd2WmheKDdA7UB4I1Ra1jMy2ZHsuiqMlNJKhSuuiB9wCk+ERJjqtcCWle0VzIYaaJ3N5WQTg982sDq+Xy5L/aloBKiwFElzcMX9uWYlWVGCVz9w4VcoxX9PusE/UIgRUo4lsylik4uwbsnQTUrg3GsiB39cTQ50geGWq84wPaTe500I4ACRUUtrd3KXeBXbKWi16AMuGL2MPq7YOm7hrC1rGJ8l3Ky5IaOrdaxXhUMoejUrj8raCamx2m7GbalJvaveK2y+7OSYO6D9sxLp5OyNsf4LJWZBXheRYKolahsLadFKrs9pP/F617nt/62vuPO2/BgKxep1Oa20pALlHYALjAOA4Wd7Glu7Yd9DtUwROHlSji5Cls9Ux8adc3+OGrOk0UUpTFrMxMTlAn/yi4No/B8w/mvD+E0aiJ3HckNQdQ+nX44wocME7T862kTr82fUWO/ZBoiz0aqq4iE1T6ufyYSKIucZp0OZC94tg7YRyM85LtPqjpHndVGVm9PH+EXvbqBhq1NIxLGyNAl0fkPsCThNtPhN3IZeAIAt2mgcR+AYnJNltB5CLlYVE7H5LGSg1KZmg02PY+OaL1yJDGGRIW7BIgMnWPErGxUZvijAH8a9MbOhFCEwYI=
+  node_js: 12
   on:
     branch: master
     repo: 0time/test-deps
