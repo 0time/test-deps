@@ -9,11 +9,7 @@ jobs:
     - if: type = pull_request
       node_js: 12
       stage: expect_version_bump
-      script:
-        diff
-          <(git show origin/master:package.json | jq -r .version)
-          <(cat package.json | jq -r .version)
-          && exit 1
+      script: bin/check-for-version-bump
     - node_js: 12
       stage: deploy
       deploy:
