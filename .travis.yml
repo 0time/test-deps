@@ -1,14 +1,13 @@
 language: node_js
+node_js:
+  - 8
+  - 10
+  - 11
+  - 12
 jobs:
   include:
-    - script: npm run test
-      stage: test
-      node_js:
-      - 8
-      - 10
-      - 11
-      - 12
     - if: type = pull_request
+      node_js: 12
       stage: expect_version_bump
       script:
         diff
