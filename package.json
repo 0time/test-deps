@@ -1,8 +1,11 @@
 {
   "name": "@0ti.me/test-deps",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "license": "MIT",
+  "bin": {
+    "check-for-version-bump": "./bin/check-for-version-bump"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "yarn lint && yarn test:unit && yarn test:integration && yarn test:coveralls",
