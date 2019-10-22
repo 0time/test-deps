@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+main() {
+  local BRANCH=
+  local V_SEL=${VERSION_SELECTOR-.version}
+
+  if [ ${USE_TRAVIS_VARS-0} -eq 0 ]; then
+    BRANCH="${TRAVIS_BRANCH}"
+  else
+    BRANCH="${BRANCH-${REMOTE_NAME-origin}/${BRANCH_NAME-master}}"
+  fi
+
+  diff \
+    <(git show ${BRANCH}:${PACKAGE_JSON-package.json} | jq -r "${V_SEL}") \
+    <(cat package.json | jq -r "${V_SEL}") \
+    && echo 'Version unchanged, :(.' \
+    && exit 1 \
+    || echo 'Version changed!  Great Success!'
+}
+
+main "$@"
