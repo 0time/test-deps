@@ -32,7 +32,7 @@ const info = {
 const d = require('./lib/d')(info);
 const tquire = require('./lib/tquire')(info);
 
-module.exports = {
+const testContext = {
   _,
   bluebird,
   chai,
@@ -47,3 +47,7 @@ module.exports = {
   },
   uuid,
 };
+
+testContext.testRunner = require('./lib/test-runner')(testContext);
+
+module.exports = testContext;
