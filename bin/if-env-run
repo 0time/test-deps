@@ -3,5 +3,7 @@
 if [ "${!1}" != "" ]; then
   shift
 
-  echo would run $@
+  set -x
+
+  eval "$@"
 fi
