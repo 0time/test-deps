@@ -27,9 +27,9 @@
     "mocha": "^6.2.1",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
-    "sinon": "^7.5.0",
+    "sinon": "^9.0.2",
     "sinon-as-promised": "^4.0.3",
-    "sinon-chai": "^3.3.0",
+    "sinon-chai": "^3.5.0",
     "uuid": "^3.3.3"
   },
   "publishConfig": {
