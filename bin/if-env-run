@@ -3,7 +3,5 @@
 if [ "${!1}" != "" ]; then
   shift
 
-  set -x
-
   eval "$@"
 fi
