@@ -9,10 +9,11 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "mynyc": "nyc --nycrc-path=nyc.config.js",
     "test": "yarn lint && yarn test:unit && yarn test:integration && yarn test:coveralls",
-    "test:coveralls": "NODE_ENV=unit nyc mocha && nyc report --reporter=text-lcov | coveralls",
-    "test:integration": "NODE_ENV=integration nyc mocha",
-    "test:unit": "NODE_ENV=unit nyc mocha"
+    "test:coveralls": "NODE_ENV=unit yarn mynyc mocha && yarn mynyc report --reporter=text-lcov | coveralls",
+    "test:integration": "NODE_ENV=integration yarn mynyc mocha",
+    "test:unit": "NODE_ENV=unit yarn mynyc mocha"
   },
   "dependencies": {
     "bluebird": "^3.7.1",

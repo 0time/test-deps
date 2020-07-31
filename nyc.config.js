@@ -1,12 +1,37 @@
-const tryquire = (x, def = {}) => {
-  try {
-    return require(x);
-  } catch (err) {
-    return def;
-  }
+const { NODE_ENV } = process.env;
+
+const tryquire = require('./src/lib/try-quire');
+const myNycrc = tryquire('./.my.nycrc.js');
+
+const watermarks = {
+  default: {
+    branches: [90, 95],
+    functions: [90, 95],
+    lines: [90, 95],
+    statements: [90, 95],
+  },
+  integration: {
+    branches: [50, 70],
+    functions: [50, 70],
+    lines: [50, 70],
+    statements: [50, 70],
+  },
 };
 
-const myNycrc = tryquire('./.my.nycrc.js');
+const coverageLevels = {
+  default: {
+    branches: 90,
+    functions: 90,
+    lines: 90,
+    statements: 90,
+  },
+  integration: {
+    branches: 50,
+    functions: 50,
+    lines: 50,
+    statements: 50,
+  },
+};
 
 module.exports = Object.assign(
   {
@@ -14,12 +39,8 @@ module.exports = Object.assign(
     forceColor: true,
     include: ['src'],
     reporter: ['lcov', 'text', 'text-summary'],
-    watermarks: {
-      branches: [90, 95],
-      functions: [90, 95],
-      lines: [90, 95],
-      statements: [90, 95],
-    },
+    watermarks: watermarks[NODE_ENV] || watermarks.default,
   },
+  coverageLevels[NODE_ENV] || coverageLevels.default,
   myNycrc,
 );
