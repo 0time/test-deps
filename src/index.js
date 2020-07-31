@@ -13,6 +13,8 @@ const sinonChai = require('sinon-chai');
 const util = require('util');
 const uuid = require('uuid').v4;
 
+const tryquire = require('./lib/try-quire');
+
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
 
@@ -41,6 +43,7 @@ const testContext = {
   path,
   sinon,
   tquire,
+  tryquire,
   util,
   utilities: {
     info,

@@ -36,6 +36,7 @@ const coverageLevels = {
 module.exports = Object.assign(
   {
     all: true,
+    'check-coverage': true,
     forceColor: true,
     include: ['src'],
     reporter: ['lcov', 'text', 'text-summary'],
