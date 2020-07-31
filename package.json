@@ -1,6 +1,6 @@
 {
   "name": "@0ti.me/test-deps",
-  "version": "0.1.9",
+  "version": "0.1.12",
   "main": "index.js",
   "license": "MIT",
   "bin": {
@@ -9,10 +9,11 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "yarn lint && yarn test:unit && yarn test:integration && yarn test:coveralls",
-    "test:coveralls": "NODE_ENV=unit nyc mocha && nyc report --reporter=text-lcov | coveralls",
-    "test:integration": "NODE_ENV=integration nyc mocha",
-    "test:unit": "NODE_ENV=unit nyc mocha"
+    "run-coveralls": "NODE_ENV=unit nyc report --reporter=text-lcov | coveralls",
+    "test": "yarn lint && yarn test:unit && yarn test:coveralls && yarn test:integration",
+    "test:coveralls": "./bin/if-env-run CI yarn run-coveralls",
+    "test:integration": "NODE_ENV=integration yarn nyc mocha",
+    "test:unit": "NODE_ENV=unit yarn nyc mocha"
   },
   "dependencies": {
     "bluebird": "^3.7.1",
