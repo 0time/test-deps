@@ -40,7 +40,7 @@ d(__filename, () => {
     });
   });
 
-  describe('given a succeeding requrie call', () => {
+  describe('given a succeeding require call', () => {
     let successSymbol = null;
     let mockRequire = null;
     let tryquire = null;
