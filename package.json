@@ -2,7 +2,7 @@
   "name": "@0ti.me/test-deps",
   "version": "0.1.13",
   "main": "index.js",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bin": {
     "check-for-version-bump": "./bin/check-for-version-bump",
     "if-env-run": "./bin/if-env-run"
