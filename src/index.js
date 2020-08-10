@@ -8,7 +8,6 @@ const bluebird = require('bluebird');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const path = require('path');
-const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const util = require('util');
@@ -33,6 +32,7 @@ const info = {
 };
 
 const d = require('./lib/d')(info);
+const pquire = require('./lib/pquire')(info);
 const tquire = require('./lib/tquire')(info);
 
 const testContext = {
@@ -42,7 +42,7 @@ const testContext = {
   d,
   expect: chai.expect,
   path,
-  proxyquire: proxyquire.noPreserveCache().noCallThru(),
+  pquire,
   sinon,
   tquire,
   tryquire,
