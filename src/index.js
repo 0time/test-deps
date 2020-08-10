@@ -8,6 +8,7 @@ const bluebird = require('bluebird');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const path = require('path');
+const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const util = require('util');
@@ -41,6 +42,7 @@ const testContext = {
   d,
   expect: chai.expect,
   path,
+  proxyquire: proxyquire.noPreserveCache().noCallThru(),
   sinon,
   tquire,
   tryquire,
