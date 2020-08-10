@@ -1,8 +1,9 @@
 {
   "name": "@0ti.me/test-deps",
   "version": "0.1.14",
-  "main": "index.js",
+  "description": "A library for adding test tooling",
   "license": "GPL-3.0",
+  "main": "index.js",
   "bin": {
     "check-for-version-bump": "./bin/check-for-version-bump",
     "if-env-run": "./bin/if-env-run"
