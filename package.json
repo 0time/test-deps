@@ -17,6 +17,7 @@
     "test:unit": "NODE_ENV=unit yarn nyc mocha"
   },
   "dependencies": {
+    "@0ti.me/en-path": "^0.1.0",
     "bluebird": "^3.7.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",

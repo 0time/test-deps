@@ -8,22 +8,23 @@ const {
   expect,
   sinon: { spy, stub },
   tquire,
+  uuid,
 } = deps;
 
 const me = __filename;
 
 d(me, () => {
-  const filename = Symbol();
-  const mockPathDirnameResult = Symbol();
-  const mockPathJoinResult = Symbol();
-  const mockPathRelativeRootSrcResult = Symbol();
-  const mockPathRelativeTestFilenameResult = Symbol();
-  const mockProxyquireResult = Symbol();
-  const mockSpecialRelativeResult = Symbol();
-  const mocksSymbol = Symbol();
-  const root = Symbol();
-  const src = Symbol();
-  const test = Symbol();
+  let filename = null;
+  let mockPathDirnameResult = null;
+  let mockPathJoinResult = null;
+  let mockPathRelativeRootSrcResult = null;
+  let mockPathRelativeTestFilenameResult = null;
+  let mockProxyquireResult = null;
+  let mockSRelativeResult = null;
+  let mocksSymbol = null;
+  let root = null;
+  let src = null;
+  let test = null;
 
   let info = null;
   let mocks = null;
@@ -34,10 +35,22 @@ d(me, () => {
   let mockPathJoin = null;
   let mockPathRelative = null;
   let mockProxyquire = null;
-  let mockSpecialRelative = null;
+  let mockSRelative = null;
   let pquire = null;
 
   beforeEach(() => {
+    filename = `filename-${uuid()}`;
+    mockPathDirnameResult = `mock-path-dirname-result-${uuid()}`;
+    mockPathJoinResult = `mock-path-join-result-${uuid()}`;
+    mockPathRelativeRootSrcResult = `mock-path-relative-root-src-result-${uuid()}`;
+    mockPathRelativeTestFilenameResult = `mock-path-relative-test-filename-result-${uuid()}`;
+    mockProxyquireResult = `mock-proxyquire-result-${uuid()}`;
+    mockSRelativeResult = `mock-special-relative-result-${uuid()}`;
+    mocksSymbol = `mocks-symbol-${uuid()}`;
+    root = `root-${uuid()}`;
+    src = `src-${uuid()}`;
+    test = `test-${uuid()}`;
+
     mocks = {};
 
     mockPathDirname = stub().returns(mockPathDirnameResult);
@@ -53,21 +66,21 @@ d(me, () => {
       }
     });
 
+    mockSRelative = stub().returns(mockSRelativeResult);
+
     mockPath = {
       dirname: mockPathDirname,
       join: mockPathJoin,
       relative: mockPathRelative,
+      srelative: mockSRelative,
     };
-
-    mockSpecialRelative = stub().returns(mockSpecialRelativeResult);
 
     mockNoCallThru = stub().returns(mockProxyquireResult);
     mockNoPreserveCache = stub().returns({ noCallThru: () => mockNoCallThru });
     mockProxyquire = { noPreserveCache: mockNoPreserveCache };
 
-    mocks['path'] = mockPath;
+    mocks['@0ti.me/en-path'] = mockPath;
     mocks['proxyquire'] = mockProxyquire;
-    mocks['../tquire/special-relative'] = mockSpecialRelative;
 
     info = { directories: { root, src, test } };
 
@@ -79,7 +92,7 @@ d(me, () => {
 
     expect(mockNoPreserveCache).to.have.been.calledOnceWithExactly();
     expect(mockNoCallThru).to.have.been.calledOnceWithExactly(
-      mockSpecialRelativeResult,
+      mockSRelativeResult,
       mocksSymbol,
     );
   });
@@ -87,7 +100,7 @@ d(me, () => {
   it('should call specialRelative with the dirname and the joined path', () => {
     pquire(filename, mocksSymbol);
 
-    expect(mockSpecialRelative).to.have.been.calledOnceWithExactly(
+    expect(mockSRelative).to.have.been.calledOnceWithExactly(
       mockPathDirnameResult,
       mockPathJoinResult,
     );
