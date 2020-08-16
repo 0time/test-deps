@@ -1,3 +1,3 @@
-global.deps = require('@0time/test-deps');
+global.deps = require('@0ti.me/test-deps');
 
 module.exports = global.deps;
