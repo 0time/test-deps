@@ -53,3 +53,63 @@ The `d` feature will use the same logic as tquire to call describe with the sour
         .replace(process.cwd(), '')
         .replace(/\/?test\/unit/, ''), () => {
     });
+
+## Configuration Templates
+
+In the `./configuration-templates` directory, you can find configuration files which can be used in various ways.
+
+## Quickstart:
+
+    if which yarn; then
+      yarn add --dev @0ti.me/test-deps
+    else
+      npm install --save-dev @0ti.me/test-deps
+    fi
+
+    for i in nyc.config.js huskyrc.js lint-staged.config.js mocharc.js nyc.config.js prettierrc.js; do
+      OUTPUT="${i}"
+
+      if echo $i | grep -E 'rc\.js$' 2>/dev/null 1>&2; then
+        OUTPUT=".${OUTPUT}"
+      fi
+
+      ln -s "node_modules/@0ti.me/test-deps/configuration-templates/${i}" "${OUTPUT}"
+    done
+
+    ln -s "node_modules/@0ti.me/test-deps/configuration-templates/add-deps-global.js" "test/add-deps-global.js"
+
+### nyc.config.js
+
+You can use it as is with a symlink
+
+    #!/usr/bin/env bash
+
+    ln -s node_modules/@0ti.me/test-deps/configuration-templates/nyc.config.js
+
+Or you can require it (in your own nyc.config.js)
+
+    const testDepsNycConfig = require('@0ti.me/test-deps/configuration-templates/nyc.config.js');
+
+    module.exports = testDepsNycConfig;
+
+Or you can require it and override things you want to change. (in your own nyc.config.js)
+
+    const testDepsNycConfig = require('@0ti.me/test-deps/configuration-templates/nyc.config.js');
+
+    module.exports = Object.assign(
+      {},
+      testDepsNycConfig,
+      {branches: 10},
+    );
+
+### Files similar to `nyc.config.js`:
+
+* eslintrc.js☭
+* huskyrc.js☭
+* lint-staged.config.js
+* mocharc.js☭
+* prettierrc.js☭
+
+☭ The files with this mark must be symlinked to `project-dir/.filename` like so:
+
+    ln -s node_modules/@0ti.me/test-deps/configuration-templates/eslintrc.js .eslintrc.js

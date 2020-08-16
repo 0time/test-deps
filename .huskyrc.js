@@ -1,0 +1,1 @@
+configuration-templates/huskyrc.js

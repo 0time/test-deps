@@ -1,4 +1,1 @@
-module.exports = {
-  singleQuote: true,
-  trailingComma: "all",
-};
+configuration-templates/prettierrc.js
