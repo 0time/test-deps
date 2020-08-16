@@ -1,4 +1,4 @@
-const { NODE_ENV } = process.env;
+const { NODE_ENV, NYC_REPORTERS } = process.env;
 
 const defaultColorSettings = {
   integration: {
@@ -10,6 +10,7 @@ const defaultColorSettings = {
     green: 95,
   },
 };
+const defaultReporters = ['lcov', 'text', 'text-summary'];
 
 defaultColorSettings.default = defaultColorSettings.unit;
 
@@ -23,9 +24,15 @@ const setAllCategoriesTo = inp => ({
   statements: inp,
 });
 
+const getCoverageLevels = ({ yellow }) => setAllCategoriesTo(yellow);
+const getReporters = () =>
+  NYC_REPORTERS !== undefined
+    ? NYC_REPORTERS === ''
+      ? []
+      : NYC_REPORTERS.split(',')
+    : defaultReporters;
 const getWatermarks = ({ yellow, green }) =>
   setAllCategoriesTo([yellow, green]);
-const getCoverageLevels = ({ yellow }) => setAllCategoriesTo(yellow);
 
 module.exports = Object.assign(
   {
@@ -33,7 +40,7 @@ module.exports = Object.assign(
     'check-coverage': true,
     forceColor: true,
     include: ['src'],
-    reporter: ['lcov', 'text', 'text-summary'],
+    reporter: getReporters(),
     watermarks: getWatermarks(getColorSettings()),
   },
   getCoverageLevels(getColorSettings()),
@@ -45,7 +52,8 @@ if (require.main === module) {
   console.error(module.exports); // eslint-disable-line no-console
 }
 
-module.exports.getColorSettings = getColorSettings;
-module.exports.getWatermarks = getWatermarks;
-module.exports.getCoverageLevels = getCoverageLevels;
 module.exports.setAllCategoriesTo = setAllCategoriesTo;
+module.exports.getColorSettings = getColorSettings;
+module.exports.getCoverageLevels = getCoverageLevels;
+module.exports.getReporters = getReporters;
+module.exports.getWatermarks = getWatermarks;
