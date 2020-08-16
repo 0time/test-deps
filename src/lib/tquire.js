@@ -1,5 +1,4 @@
-const path = require('path');
-const specialRelative = require('./special-relative');
+const path = require('@0ti.me/en-path');
 
 module.exports = ({ directories: { root, src, test } }) => (
   filename,
@@ -9,7 +8,7 @@ module.exports = ({ directories: { root, src, test } }) => (
   // the filename, make it relative to _that_ file.
   const relativeFilename = shouldRequire ? __filename : filename;
 
-  const relativePath = specialRelative(
+  const relativePath = path.srelative(
     // Since require is based on _this_ file, relative to the directory that
     // _this_ file lives in
     path.dirname(relativeFilename),

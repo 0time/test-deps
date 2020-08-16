@@ -1,6 +1,6 @@
 {
   "name": "@0ti.me/test-deps",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "A library for adding test tooling",
   "license": "GPL-3.0",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "test:unit": "NODE_ENV=unit yarn nyc mocha"
   },
   "dependencies": {
+    "@0ti.me/en-path": "^0.1.0",
     "bluebird": "^3.7.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
