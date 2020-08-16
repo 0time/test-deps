@@ -1,0 +1,1 @@
+configuration-templates/lint-staged.config.js
