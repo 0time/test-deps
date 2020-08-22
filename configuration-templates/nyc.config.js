@@ -1,4 +1,4 @@
-const { NODE_ENV, NYC_REPORTERS } = process.env;
+const { CHECK_COVERAGE, NODE_ENV, NYC_REPORTERS } = process.env;
 
 const defaultColorSettings = {
   integration: {
@@ -24,6 +24,7 @@ const setAllCategoriesTo = inp => ({
   statements: inp,
 });
 
+const getCheckCoverage = () => (CHECK_COVERAGE === '' ? false : true);
 const getCoverageLevels = ({ yellow }) => setAllCategoriesTo(yellow);
 const getReporters = () =>
   NYC_REPORTERS !== undefined
@@ -37,13 +38,13 @@ const getWatermarks = ({ yellow, green }) =>
 module.exports = Object.assign(
   {
     all: true,
-    'check-coverage': true,
+    'check-coverage': getCheckCoverage(),
     forceColor: true,
     include: ['src'],
     reporter: getReporters(),
     watermarks: getWatermarks(getColorSettings()),
   },
-  getCoverageLevels(getColorSettings()),
+  getCheckCoverage() ? getCoverageLevels(getColorSettings()) : {},
 );
 
 // This just prints everything if you execute this directly like so:
