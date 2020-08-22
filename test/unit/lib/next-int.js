@@ -58,5 +58,10 @@ d(me, () => {
       expect(nextInt(HIGH))
         .to.be.at.least(0)
         .and.at.most(HIGH));
+
+    it('should give a value inclusively between the low and high values', () =>
+      expect(nextInt())
+        .to.be.at.least(0)
+        .and.at.most(Number.MAX_SAFE_INTEGER));
   });
 });
