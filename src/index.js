@@ -7,13 +7,16 @@ const _ = require('lodash');
 const bluebird = require('bluebird');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const dCreator = require('./lib/d');
+const nextInt = require('./lib/next-int');
 const path = require('path');
+const pquireCreator = require('./lib/pquire');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
+const tquireCreator = require('./lib/tquire');
+const tryquire = require('./lib/try-quire');
 const util = require('util');
 const uuid = require('uuid').v4;
-
-const tryquire = require('./lib/try-quire');
 
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
@@ -31,9 +34,9 @@ const info = {
   env,
 };
 
-const d = require('./lib/d')(info);
-const pquire = require('./lib/pquire')(info);
-const tquire = require('./lib/tquire')(info);
+const d = dCreator(info);
+const pquire = pquireCreator(info);
+const tquire = tquireCreator(info);
 
 const testContext = {
   _,
@@ -41,6 +44,7 @@ const testContext = {
   chai,
   d,
   expect: chai.expect,
+  nextInt,
   path,
   pquire,
   sinon,

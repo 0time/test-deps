@@ -1,6 +1,6 @@
 {
   "name": "@0ti.me/test-deps",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "A library for adding test tooling",
   "license": "GPL-3.0",
   "main": "index.js",
@@ -26,7 +26,7 @@
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^4.2.5",
-    "lint-staged": "^9.4.2",
+    "lint-staged": "^10.2.11",
     "lodash": "^4.17.19",
     "minimist": "^1.2.5",
     "mocha": "^6.2.1",
