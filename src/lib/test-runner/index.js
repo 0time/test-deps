@@ -7,5 +7,6 @@ module.exports = testContext => testConfig => {
     ? testConfig.description(testConfig)
     : testConfig.description;
 
-  return it(description, () => runner(testContext, testConfig));
+  return new Promise(resolve => it(description, () => runner(testContext, testConfig).then(result =>
+    resolve(result))));
 };
