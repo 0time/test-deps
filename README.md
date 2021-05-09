@@ -66,7 +66,7 @@ In the `./configuration-templates` directory, you can find configuration files w
       npm install --save-dev @0ti.me/test-deps
     fi
 
-    for i in nyc.config.js huskyrc.js lint-staged.config.js mocharc.js nyc.config.js prettierrc.js; do
+    for i in eslintrc.js huskyrc.js lint-staged.config.js mocharc.js nyc.config.js prettierrc.js; do
       OUTPUT="${i}"
 
       if echo $i | grep -E 'rc\.js$' 2>/dev/null 1>&2; then
@@ -76,7 +76,7 @@ In the `./configuration-templates` directory, you can find configuration files w
       ln -s "node_modules/@0ti.me/test-deps/configuration-templates/${i}" "${OUTPUT}"
     done
 
-    ln -s "node_modules/@0ti.me/test-deps/configuration-templates/add-deps-global.js" "test/add-deps-global.js"
+    ln -s "../node_modules/@0ti.me/test-deps/configuration-templates/add-deps-global.js" "test/add-deps-global.js"
 
 ### nyc.config.js
 
